@@ -1,0 +1,37 @@
+{
+  "project_id": "local-reuse-example",
+  "tasks": [
+    {
+      "task_id": "uppercase",
+      "inputs": [
+        "inputs/source.txt"
+      ],
+      "code": [
+        "code/uppercase.py"
+      ],
+      "parameters": {},
+      "model_revision": "none",
+      "shard_id": "whole",
+      "dependencies": [],
+      "outputs": [
+        "outputs/uppercase.txt"
+      ]
+    },
+    {
+      "task_id": "count",
+      "inputs": [],
+      "code": [
+        "code/count.py"
+      ],
+      "parameters": {},
+      "model_revision": "none",
+      "shard_id": "whole",
+      "dependencies": [
+        "uppercase"
+      ],
+      "outputs": [
+        "outputs/count.json"
+      ]
+    }
+  ]
+}

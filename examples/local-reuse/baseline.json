@@ -1,0 +1,52 @@
+{
+  "project_id": "local-reuse-example",
+  "tasks": [
+    {
+      "task_id": "uppercase",
+      "inputs": [
+        {
+          "path": "inputs/source.txt",
+          "sha256": "58815169239a3596d2c2c25366a26c2973e5c157cdcb8a06dd13e6d02869f96b"
+        }
+      ],
+      "code": [
+        {
+          "path": "code/uppercase.py",
+          "sha256": "b063781cbedb5a8212ebacec073dea7534c1c159af334c1474a9c0ff6cd2318c"
+        }
+      ],
+      "parameters": {},
+      "model_revision": "none",
+      "shard_id": "whole",
+      "dependencies": [],
+      "outputs": [
+        {
+          "path": "outputs/uppercase.txt",
+          "sha256": "be2de565805257f91fc6379e0f4c19a2ba0ea7269a78aca94de1f1556d0ff6b7"
+        }
+      ]
+    },
+    {
+      "task_id": "count",
+      "inputs": [],
+      "code": [
+        {
+          "path": "code/count.py",
+          "sha256": "1075b7061248993a452336001066aeab4d39961ec6fef496d95a1818220cd602"
+        }
+      ],
+      "parameters": {},
+      "model_revision": "none",
+      "shard_id": "whole",
+      "dependencies": [
+        "uppercase"
+      ],
+      "outputs": [
+        {
+          "path": "outputs/count.json",
+          "sha256": "2a95d8144abface185d7a69e0231deba16b9d91968b2f97aec6261fbfbe4e202"
+        }
+      ]
+    }
+  ]
+}
