@@ -1,0 +1,40 @@
+{
+  "date_utc": "2026-10-16",
+  "source_repository": "https://github.com/kgujmv-boop/ai-cloud-workflow-skill",
+  "source_commit": "1a94d69fdf2bceca2332a790cc95eb83b1fb552a",
+  "mode": "four-case plan-only comparison; no external execution",
+  "generation": {
+    "same_inherited_model_without_override": true,
+    "requested_reasoning_effort": "xhigh",
+    "exact_model_id": "unavailable",
+    "temperature": "unavailable",
+    "seed": "unavailable",
+    "sessions_per_condition": 1,
+    "cases_per_session": 4
+  },
+  "labels": {
+    "A": "with-skill.md",
+    "B": "without-skill.md"
+  },
+  "skill_file_sha256": {
+    "SKILL.md": "ed7afb239b4953590e9b46e50005c387533c34020158114f3b6ba453cd614db6",
+    "references/scheduling.md": "f6b5a35cf85cb868c3cff163b5159b0c2333db572ec64222e46f828db91ca61e",
+    "references/quality-and-delivery.md": "ab8eeb056a9f0ddc493d46d02a41db3087c45db0a97ab4ad1a4998f15c212a3e",
+    "references/video-and-voice.md": "b3d8bbccd922d35748d5239efcb3d0a1dec6b50490b9f06157ff8e067a710042",
+    "references/option-discovery.md": "043d602c45f6719f76fecbecac5e051d87324dbf0ec0addfea0c12df97ce1b4e",
+    "references/connection-onboarding.md": "48f82c00872200d722030e2b72126de77568ce0b15c5820be84b325da6d22d83",
+    "tests/behavior/scenarios.json": "0b1cfac4905ff284d7607af9205265810c4d69bd52d80d146480ec97ad0cf07f"
+  },
+  "evaluation_file_sha256": {
+    "README.md": "656af32140440232211ce8f6218c67d71e3e694f0830066e1470524ce5f39356",
+    "assessment.md": "7d76a31e4578aa4471be273aa5966d6dc900fc41ac5f21aa5ef0aa206242e3b6",
+    "ci-evidence.md": "e5d411ae3c5f49f377aa65bb602e1f55835421f811674bf78d0559fd9c35d133",
+    "prompts.md": "213ea224833c3f1b041c9a778bd5dbe46453a027b236e53cae596ef14ccf679b",
+    "protocol.md": "4cb3cab520c48eca6f6c5127b3b3a8542fe691f43fe191744907d2313cb5cae3",
+    "requests.json": "6ad7c67855099c634b5160bcf924acfc793e5ff89af9c4bad17ec753c89398d3",
+    "rubric.json": "0b1cfac4905ff284d7607af9205265810c4d69bd52d80d146480ec97ad0cf07f",
+    "scores.json": "49906a07dc9ab2c2270222209428e7f362dbe9edf6629d8876a56d5249020708",
+    "with-skill.md": "0f65e4dc1123c19e158edbce518bae1f1ccb2a89939fcb6aed08283fec2b06d0",
+    "without-skill.md": "d81cd7267e29394be4fcfad870bd13ef1c851946e7260af333eaa018fe370b2d"
+  }
+}
