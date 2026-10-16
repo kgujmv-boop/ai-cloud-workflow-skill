@@ -62,6 +62,8 @@ dot、bot、muse、Codex、Claude 等助手，只要能读取这些文件，并�
 
 [CPU 恢复示例](examples/cpu-recovery/README.md)使用一份小数据展示分片、保存进度、中断后复用结果，以及备份恢复检查，不需要云账号。另有[行为检查情景](tests/behavior/README.md)，用于检查助手在额度不足、任务状态不明和备份失败时如何处理。情景评分与真实云平台测试是两回事。
 
+[自动测试](.github/workflows/tests.yml)会运行任务清单单测和 CPU 恢复示例。[四情景对照记录](tests/behavior/evaluation-2026-10-16/README.md)保留了有 / 无 Skill 的完整回答和评分；本次两组结果相同，没有证明 Skill 更优。
+
 ## 使用前需要知道
 
 免费 GPU 和试用额度随平台、账号和时间变化，要以当前检查结果为准。已有付费订阅、云盘费用以及开源工具的托管成本，应单独列出。多块显卡也不会自动合成一块大显存显卡。
@@ -70,7 +72,7 @@ dot、bot、muse、Codex、Claude 等助手，只要能读取这些文件，并�
 
 任务清单检查脚本只检查 JSON 中已实现的规则，不会联网查询额度、检查实际文件内容或提交任务。检查通过也不代表任务已经完成或可以直接执行。它会检查完成记录是否写了输出位置、哈希和验证标记，依赖是否完成，以及是否重复安排了同样的工作；有理由的重新计算需填写原因。实际文件能否访问、内容是否匹配，仍需助手另行检查。
 
-仓库尚未选择开源许可证。公开可见不代表额外授予使用权。参考项目链接在 [AI 协作与学习](references/ai-and-learning.md)，这里没有打包它们的代码或私人素材。
+本项目采用 [MIT 许可证](LICENSE)。引用的第三方项目仍按各自许可证使用。参考项目链接在 [AI 协作与学习](references/ai-and-learning.md)，这里没有打包它们的代码或私人素材。
 
 ## English documentation
 
@@ -115,10 +117,12 @@ This repository contains instructions, templates, and that checker. It does not 
 
 See the [CPU recovery demo](examples/cpu-recovery/README.md) for a local exercise and [behavior scenarios](tests/behavior/README.md) for dry-run evaluation rubrics. These are not live cloud integration tests.
 
+[CI](.github/workflows/tests.yml) runs the manifest tests and CPU recovery demo. The [four-case comparison](tests/behavior/evaluation-2026-10-16/README.md) preserves both responses and scoring; the two conditions tied, with no demonstrated advantage.
+
 ### Limits and permissions
 
 The skill supplies no hardware, subscription, or persistent login. Free allocation can change, and multiple GPUs do not automatically pool VRAM. Account for existing paid storage, subscriptions, and hosting costs separately.
 
 Uploads, purchases, account permissions, and deletion require effective authorization. Keep passwords, tokens, and cookies out of conversations and project files. Check backups before authorized cleanup and preserve files still needed by other work.
 
-Public reference projects are linked in [AI collaboration and learning](references/ai-and-learning.md); their code and private media are not bundled. No open-source license has been selected. Public visibility alone does not grant additional usage rights.
+Public reference projects are linked in [AI collaboration and learning](references/ai-and-learning.md); their code and private media are not bundled. This project is licensed under [MIT](LICENSE). Linked third-party projects retain their own licenses.
