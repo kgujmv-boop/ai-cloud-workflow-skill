@@ -49,4 +49,6 @@ Upload only to an authorized destination with the intended permissions. Verify r
 
 See [usage](references/usage.md). Copy the blank [project configuration](assets/project-config.json) and [task manifest](assets/task-manifest.json), then fill actual values.
 
+For a CPU-only recovery exercise, see [the local demo](examples/cpu-recovery/README.md). For dry-run behavior checks, see [scenario rubrics](tests/behavior/README.md). Neither demonstrates live provider integration.
+
 Run `python scripts/validate_manifest.py /path/to/task-manifest.json` for offline checks. It reads JSON only: no network calls, authorization, dispatch, file-content verification, or distributed locking. An OK result confirms only the implemented offline checks, not permission to execute. Use one dispatcher or a real atomic claim mechanism for concurrent work.
