@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="440" viewBox="0 0 1200 440" role="img" aria-labelledby="title desc">
-<title id="title">让 AI 把资源用起来</title><desc id="desc">免费优先选方案，按需分工，保存进度，核验交付。AI resource orchestration skill.</desc>
+<title id="title">让 AI 按任务选择工具和算力</title><desc id="desc">先找免费方案，分好任务，记下进度，做完先检查。AI resource orchestration skill.</desc>
 <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#0b1222"/><stop offset="1" stop-color="#122d38"/></linearGradient><linearGradient id="accent"><stop stop-color="#5eead4"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs>
 <rect width="1200" height="440" rx="24" fill="url(#bg)"/>
 <g fill="none" stroke="#294654" stroke-width="1"><path d="M760 0v440M840 0v440M920 0v440M1000 0v440M1080 0v440M1160 0v440M720 60h480M720 140h480M720 220h480M720 300h480M720 380h480"/></g>
 <rect x="54" y="49" width="290" height="31" rx="15" fill="#183d46"/><text x="72" y="70" fill="#8ef0df" font-family="sans-serif" font-size="14" letter-spacing="2">ORCHESTRATE AI CLOUD WORK</text>
-<text x="54" y="164" fill="#f8fafc" font-family="Noto Sans CJK SC,sans-serif" font-size="48" font-weight="700">让 AI 把资源用起来</text>
-<text x="56" y="208" fill="#afc4d1" font-family="sans-serif" font-size="24">The right resources. A clear plan. Recoverable work.</text>
-<text x="56" y="269" fill="#d5e5ed" font-family="Noto Sans CJK SC,sans-serif" font-size="23">免费优先选方案 · 按需分工 · 保存进度 · 核验交付</text>
+<text x="54" y="164" fill="#f8fafc" font-family="Noto Sans CJK SC,sans-serif" font-size="40" font-weight="700">让 AI 按任务选择工具和算力</text>
+<text x="56" y="208" fill="#afc4d1" font-family="sans-serif" font-size="24">Choose tools for the task. Save progress as you go.</text>
+<text x="56" y="269" fill="#d5e5ed" font-family="Noto Sans CJK SC,sans-serif" font-size="23">先找免费方案 · 分好任务 · 记下进度 · 做完先检查</text>
 <rect x="56" y="326" width="472" height="49" rx="12" fill="#142c39" stroke="#345362"/><text x="77" y="357" fill="#b5cdd8" font-family="sans-serif" font-size="18">CPU / GPU / Storage / Authorized AI tools</text>
 <g stroke="url(#accent)" stroke-width="3" fill="none"><path d="M950 212V115h100M950 212h118M950 212v113h-80M950 212H830"/></g>
 <g fill="#142d3a" stroke="#3f6c79" stroke-width="2"><rect x="802" y="175" width="96" height="72" rx="17"/><rect x="1023" y="79" width="112" height="72" rx="17"/><rect x="1040" y="176" width="112" height="72" rx="17"/><rect x="798" y="290" width="112" height="72" rx="17"/></g>
