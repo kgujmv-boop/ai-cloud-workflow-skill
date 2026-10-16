@@ -2,7 +2,7 @@
 
 ## 中文使用指引
 
-把完整文件夹交给具备相应工具的 AI 助手，说明目标、交付形式、预算和已有资源。它应先检查实际能力，再规划执行；不必为了使用技能先登录所有网站。
+可以直接把仓库链接交给能浏览网页、读写文件的 AI，让它检查内容、下载完整技能并按实际环境配置，遵循所需的软件安装和访问授权。也可以把完整文件夹交给助手，说明目标、交付形式、预算和已有资源。它应先检查实际能力，再规划执行；不必为了使用技能先登录所有网站。
 
 - **选方案：**“我想分析这份公开数据，只用免费资源。请查证当前方案，比较数据容量、隐私、使用限制和操作难度，让我选择。”
 - **开始工作：**“使用这个技能完成项目。需要我登录时，先说明哪个网站、为什么需要、需要哪些权限。”
@@ -26,6 +26,8 @@ Example requests:
 “Study these reference videos, document exactly what you inspected, apply one technique to the next version, and evaluate it when I provide results.”
 
 Clients supporting named invocation may use `$orchestrate-ai-cloud-work`. The optional agents/openai.yaml file supplies Codex UI metadata; other clients can ignore it.
+
+The user can provide the repository URL and ask the assistant to inspect, download, and configure the complete skill using supported tools and required approvals. Do not assume every client can install skills autonomously. The assistant normally fills project templates and runs checks itself. For authorized external-AI collaboration, it sends bounded task materials, retrieves output, and reviews and integrates it; do not require the user to shuttle prompts. Request user participation for needed login, authorization, or decisions.
 
 ## Configure a project
 
