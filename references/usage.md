@@ -1,4 +1,19 @@
-# Usage
+# Usage / 使用指引
+
+## 中文使用指引
+
+把完整文件夹交给具备相应工具的 AI 助手，说明目标、交付形式、预算和已有资源。它应先检查实际能力，再规划执行；不必为了使用技能先登录所有网站。
+
+- **选方案：**“我想分析这份公开数据，只用免费资源。请查证当前方案，比较数据容量、隐私、使用限制和操作难度，让我选择。”
+- **开始工作：**“使用这个技能完成项目。需要我登录时，先说明哪个网站、为什么需要、需要哪些权限。”
+- **恢复工作：**“继续昨天的项目，先核实已有输出和运行中的任务，缺什么再补什么。”
+- **学习改进：**“研究这些参考资料，记录实际看过的部分和可借鉴的方法，应用到下一版，再根据反馈评估。”
+
+首次使用时，AI 只补问上下文中没有的必要信息。明确只用免费资源时，不加入付费推荐；已有确定方案时，不强行重新选。登录需通过官方页面或安全交接完成，不在聊天中提交密码、令牌或 Cookie。加载技能不代表授权所有操作，也不会自动启动后台服务。
+
+项目配置和任务清单模板在 assets 中。填入真实数据；空值表示尚未配置，不能直接当作可执行任务。下面的英文说明给出模板和检查命令。脚本通过只说明已实现的离线检查通过，不说明云端额度、文件内容或执行权限已经核实。
+
+## English instructions
 
 This workflow targets AI assistants and tools such as dot, bot, muse, Codex, and Claude when configured with relevant capabilities. Inspect actual browser, file, code-execution, and connector access; do not assume every client supports them all. A dedicated cloud computer is not required. Load the folder using the client's supported skill or file interface. Clients without native skills can read SKILL.md and the relevant references manually. Do not assume identical tools, APIs, or automatic installation.
 
