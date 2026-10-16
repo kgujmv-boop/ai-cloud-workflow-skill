@@ -1,44 +1,54 @@
-# 云端算力与 AI 工作调度
+# Orchestrate AI Cloud Work
 
-一个可复用的 Codex Skill：把 CPU、云端 GPU、私人云盘和获准调用的其他 AI 分工使用，并通过任务清单、检查点和校验避免重复劳动。
+A reusable workflow for AI assistants and tools such as dot, bot, muse, Codex, and Claude. Allocate CPU, cloud GPUs, storage, and authorized AI tools according to the task; save progress and avoid duplicate work and wasted compute.
 
-## 能做什么
+The package uses a standard SKILL.md layout. Use it with whatever browser, file, code-execution, or connector capabilities the current environment provides. A dedicated cloud computer is not required, and browser control is not assumed to exist in every client.
 
-- 先查实际硬件、额度和现有任务，再分配；CPU 能完成的事不占 GPU。
-- 按输入和脚本哈希分片；断线后先核查旧任务，避免两边重复提交。
-- 将参考视频中的方法记成可应用、可验证的项目笔记。
-- 校验输出与回下载文件，确认可恢复后再按授权清理。
-- 可选视频模式：动画与公式联动、配音部署流程、字幕同步和画面检查。
+## Capabilities
 
-## 使用
+- Research current free-first options for the user's scenario, compare tradeoffs, and let the user choose where needed.
+- On first use, check task-relevant connections and proactively request missing sign-ins.
+- Inspect actual resources, quotas, and running jobs before allocation.
+- Divide independent inputs across workers without submitting the same batch twice.
+- Recover from disconnections using task records, hashes, and checkpoints.
+- Turn reference study into documented experiments and reusable lessons.
+- Verify final outputs and recoverable backups before authorized cleanup.
+- Apply optional video and narration guidance when relevant.
 
-将完整文件夹安装为你的 Codex Skill，保留 SKILL.md、agents、references、assets 与 scripts 的相对位置。不同客户端的安装入口可能不同，按当前客户端的技能导入方式操作；复制到任意目录不代表已安装。
+## Load and use
 
-调用示例：
+Give the entire folder to an assistant through its supported skill-loading or file-reading interface. Preserve relative paths. An assistant must be able to read the instructions, have suitable tools for each action, and hold the required authorization. With only some capabilities available, complete supported work and identify the remaining blockers. Clients differ: automatic installation, API compatibility, and access to services are not guaranteed.
 
-> 使用 $orchestrate-ai-cloud-work。先检查正在运行的任务，再把这次配音分片分给可用的免费 GPU；字幕和合成用 CPU。交付前检查文件是否能完整下载。
+Example request:
 
-详细步骤见 [使用方法](references/usage.md)。先复制并填写 assets 中的配置和任务模板，再运行只读检查：
+> Use orchestrate-ai-cloud-work. Help me prepare for my project: ask only for missing goals and constraints, recommend the resources I actually need, check existing connections, and guide me through any necessary login.
+
+Clients supporting named skill invocation can use `$orchestrate-ai-cloud-work`. Other agents can read SKILL.md and the relevant reference files directly. `agents/openai.yaml` is optional Codex metadata and may be ignored by other clients.
+
+See [usage](references/usage.md). Copy the configuration and task templates under assets, fill real values, and run:
 
 ```sh
 python scripts/validate_manifest.py /path/to/task-manifest.json
+python -m unittest discover -s tests -v
 ```
 
-检查器使用 Python 标准库，不连接云服务，不调度 GPU，也不替代授权确认或分布式锁。
+The checker uses Python's standard library and performs offline checks only. It does not contact providers, verify actual quota or file content, submit jobs, or authorize actions.
 
-## 文件结构
+## Layout
 
-- SKILL.md：触发说明、主流程与参考路由
-- agents/openai.yaml：Codex 显示与调用元数据
-- references/：调度、AI 协作与学习、验收、视频配音、使用方法
-- assets/：不含账号信息的项目与任务模板
-- scripts/：离线任务检查器
-- tests/：CPU 离线负例测试
+- SKILL.md: entry point and conditional reference routing
+- references/: scheduling, AI collaboration, learning, quality, video/narration, usage
+- assets/: blank project/task templates and an optional UI icon
+- scripts/: read-only manifest checker
+- tests/: reproducible CPU-only tests
+- agents/: optional client metadata
 
-## 边界
+## Limits
 
-此技能不提供算力、云盘或订阅，不承诺永久免费、永久登录或后台永不停止。多块 GPU 显存不是自动合并的单卡显存。既有付费存储应与免费算力分别说明。任何分享、付费、账号变更和删除仍受当前授权约束。
+This package supplies no GPU, storage, subscription, or persistent login. Free allocation can change. Multiple GPUs do not automatically pool VRAM. Existing paid storage and subscriptions must be accounted for separately. Uploading, payment, account changes, and deletion remain subject to effective authorization.
 
-外部参考项目见 [AI 协作与学习](references/ai-and-learning.md)。本包未捆绑第三方技能源码或私人素材。尚未指定开源许可证；公开可见不代表授予额外使用许可。
+Public reference projects are linked in [AI collaboration and learning](references/ai-and-learning.md); their source code and private media are not bundled. No open-source license has been selected. Public visibility alone does not grant additional usage rights.
 
-运行测试：`python -m unittest discover -s tests -v`。检查器不执行远端操作，也不验证平台额度或真实文件内容。
+## First-use connections
+
+On first active use, the assistant learns the task and missing constraints, proposes a suitable setup, then checks which services are actually needed and whether they are already connected. It asks you to sign in only where access is missing, explains why, then verifies access before continuing. Installing this skill does not independently launch a background process. See [connection onboarding](references/connection-onboarding.md).
