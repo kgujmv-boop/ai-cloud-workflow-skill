@@ -1,0 +1,23 @@
+{
+  "project_id": "",
+  "project_root": "",
+  "mode": "general",
+  "deliverable": {
+    "format": "",
+    "destination": ""
+  },
+  "authorized_services": [],
+  "authorization_evidence": [],
+  "resource_snapshot": {
+    "observed_at": null,
+    "cpu": null,
+    "ram_bytes": null,
+    "disk_free_bytes": null,
+    "gpus": [],
+    "cloud_storage_bytes": null,
+    "quota_seen": null
+  },
+  "external_ai": [],
+  "learning_notes": "",
+  "allow_paid": false
+}
