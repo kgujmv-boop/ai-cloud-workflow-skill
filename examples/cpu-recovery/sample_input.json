@@ -1,0 +1,11 @@
+[
+  {"id": "line-01", "text": "Checkpoint before work, verify after work."},
+  {"id": "line-02", "text": "Small shards make recovery clear."},
+  {"id": "line-03", "text": "A completed shard is verified and reused."},
+  {"id": "line-04", "text": "Never overwrite corrupt evidence."},
+  {"id": "line-05", "text": "Local CPU work needs no cloud account."},
+  {"id": "line-06", "text": "Restore the backup and verify its hash."},
+  {"id": "line-07", "text": "Keep inputs, code, outputs, and receipts."},
+  {"id": "line-08", "text": "Recovery is a process, not a promise."},
+  {"id": "line-09", "text": "Count words; preserve verified work."}
+]
