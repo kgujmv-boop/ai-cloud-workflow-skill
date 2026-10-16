@@ -1,11 +1,17 @@
 ---
 name: orchestrate-ai-cloud-work
-description: Help AI assistants and tools such as dot, bot, muse, Codex, and Claude allocate CPU, cloud GPUs, storage, and authorized AI services on demand. Use for multi-resource jobs, duplicate prevention, checkpoint recovery, reference learning, and verified delivery, with optional video and narration workflows.
+description: Help AI assistants and tools such as dot, bot, muse, Codex, and Claude allocate CPU, cloud GPUs, storage, and authorized AI services on demand. Use for multi-resource jobs, duplicate prevention, checkpoint recovery, reference learning, and verified delivery, with optional video and narration workflows. 按需协调算力、云盘与 AI 工具，支持免费方案比较、登录引导、任务恢复和交付核验。
 ---
 
 # Orchestrate AI Cloud Work
 
 Complete the user's task using the resources actually available. Keep enough project evidence to resume safely after interruption. Use whichever browser, file, code-execution, or connector capabilities the current assistant actually has; owning a cloud computer is not required. This workflow grants no resources, credentials, or permissions. SKILL.md is the portable entry point; Codex metadata is optional.
+
+## 中文说明
+
+这是给具备相应工具与授权的 AI 助手使用的资源协作流程，可用于编程、资料研究、数据分析、媒体制作等任务。先了解目标、成果形式、预算与已有资源；需要选方案时，查证当前可用的免费方案并比较限制，再按用户选择检查连接、引导必要的登录。执行前核实资源和在跑任务，保存进度，避免重复运行；完成后检查成果和备份，再按有效授权清理。它不会提供硬件、代替授权或在安装后自行启动后台工作。
+
+以下英文部分是完整执行说明。用户可用中文提出需求，助手按用户偏好回复。具体用法见 [中文使用指引](references/usage.md#中文使用指引)。
 
 ## Establish the contract
 
