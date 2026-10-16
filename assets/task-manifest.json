@@ -16,7 +16,8 @@
       "lease_until": null,
       "checkpoint": null,
       "submission_ref": null,
-      "outputs": []
+      "outputs": [],
+      "recompute_reason": null
     }
   ]
 }
