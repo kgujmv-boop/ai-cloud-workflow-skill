@@ -44,3 +44,14 @@ jobs:
           print("CPU checks:", proof["test_count"])
           print("Final SHA-256:", proof["final_sha256"])
           PY
+      - name: Inspect local reuse fixture
+        shell: bash
+        run: |
+          parent="$(mktemp -d "$RUNNER_TEMP/reuse-proof.XXXXXX")"
+          python scripts/inspect_reuse.py \
+            --root examples/local-reuse/workspace \
+            --baseline examples/local-reuse/baseline.json \
+            --current examples/local-reuse/current.json \
+            --baseline-sha256 85681bbc611bb2138c4a7a243314e252d3e34ae3c9094f87132c564a8d99b108 \
+            --trust-baseline \
+            --report "$parent/reuse-report.json"
