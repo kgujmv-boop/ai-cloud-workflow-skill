@@ -1,0 +1,14 @@
+interface:
+  display_name: AI Cloud Work Orchestration
+  short_description: Schedule cloud resources and AI work with recovery checks
+  default_prompt: Use $orchestrate-ai-cloud-work to inspect resources, allocate tasks,
+    and verify delivery.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
