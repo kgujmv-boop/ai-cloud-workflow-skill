@@ -18,7 +18,7 @@ States: planned → claimed → submitted → running → validating → done. E
 
 1. Reload the project record. Inspect the original provider job and output before resubmitting. Browser disconnection does not prove termination.
 2. An expired lease or missing worker triggers reconciliation, not immediate reassignment. Confirm the old job ended or never submitted, and identify completed shards. If uncertain, retain unknown and hold that shard.
-3. Match recovered results to input, script, model, parameter and output hashes. Reuse only matching validated shards; quarantine mismatches. Do not combine changed narration with stale audio or captions.
+3. Compare a trusted completion baseline with the current requested input files, code, parameters, model revision, shard, dependency list, and actual output hashes. Check dependency outputs and their identities transitively, not only the final artifact. Reuse only when every check passes. Mere file existence, an old verified flag, or matching output bytes cannot show that current inputs remain compatible. Keep mismatches blocked; do not move or delete files as part of inspection. Do not combine changed narration with stale audio or captions.
 4. Checkpoint the last verified output and next action after expensive operations. Transfer through authorized private storage only.
 5. Reproduce a fix on a small sample before retrying a batch. Repeated identical failures require diagnosis; denied permission, unexpected cost, or unresolved previous-job state stops the affected action.
 
@@ -33,3 +33,7 @@ Use strict JSON: duplicate property names and non-finite numbers are rejected. T
 Existing manifests without `recompute_reason` remain valid unless they activate work equivalent to a completed task. Older done outputs lacking `location` now fail validation: find and check the actual artifact, then record its path or URI. Do not invent a locator or set verified merely to pass. `recompute_reason` may be absent or null for ordinary work; if provided it must be a nonempty string. A legitimate rerun must still satisfy dependency, lease, receipt, permission, and resource checks.
 
 For a local example of checkpointing, verified reuse, blocked corruption, and restored backups, see [the CPU demo](../examples/cpu-recovery/README.md). This is a single-process local demonstration, not a platform adapter or distributed lock.
+
+## Local executable reuse check
+
+Use [the local reuse inspector](local-reuse.md) to check actual files against a separate, trusted historical baseline and current plan. Save the resulting new report with the project recovery records. This complements the JSON manifest validator: it reads local files and checks content identity, but does not contact providers, claim leases, schedule work, or authorize cleanup. If baseline provenance or current inputs cannot be established, report unknown/blocked and investigate rather than reconstructing a baseline from today's files.

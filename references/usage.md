@@ -11,7 +11,7 @@
 
 首次使用时，AI 只补问上下文中没有的必要信息。明确只用免费资源时，不加入付费推荐；已有确定方案时，不强行重新选。登录需通过官方页面或安全交接完成，不在聊天中提交密码、令牌或 Cookie。加载技能不代表授权所有操作，也不会自动启动后台服务。
 
-项目配置和任务清单模板在 assets 中。填入真实数据；空值表示尚未配置，不能直接当作可执行任务。下面的英文说明给出模板和检查命令。脚本通过只说明已实现的离线检查通过，不说明云端额度、文件内容或执行权限已经核实。
+项目配置和任务清单模板在 assets 中。填入真实数据；空值表示尚未配置，不能直接当作可执行任务。下面的英文说明给出模板和检查命令。任务清单脚本通过只说明 JSON 规则通过。需要判断旧成果能否复用时，让助手运行[本地复用检查](local-reuse.md)：分别读取可信的旧记录与当前计划，重新计算实际文件哈希，检查输入、代码和依赖是否变化。它会新建一份报告，不会改动原文件或自行重跑任务。
 
 ## English instructions
 
@@ -58,3 +58,7 @@ After loading the skill, give the assistant a task, or ask it to help plan your 
 Ask: “I want to analyze a dataset using free resources. Research suitable options, explain the limits and privacy tradeoffs, and let me choose before setting up new services.”
 
 The agent should research current official sources, return one or more genuinely viable free-first routes, and optionally one or two paid alternatives when consistent with your budget. If you explicitly require free-only, paid options stay out unless you ask for them. Existing explicit provider choices are respected. See [option discovery](option-discovery.md).
+
+## Inspect existing outputs before reuse
+
+Ask: “Check whether the saved outputs still match my current inputs, code, parameters, model and dependencies. Write a new recovery report before deciding what to rerun.” The assistant prepares the two separate records and runs the [local inspector](local-reuse.md). It must obtain a trusted baseline digest from the earlier completion record, not calculate a digest of an untrusted baseline and call that proof. The report is a local compatibility observation, not authorization or evidence that a remote job ended.
