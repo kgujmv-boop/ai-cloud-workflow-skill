@@ -53,7 +53,7 @@ dot、bot、muse、Codex、Claude 等助手，只要能读取这些文件，并�
 - `SKILL.md`：执行入口，按任务指向需要的参考文件
 - `references/`：选方案、登录、分工、恢复、学习和成果检查；视频与配音单独说明
 - `assets/`：空白项目模板、任务清单和主页图片
-- `scripts/`、`tests/`：任务清单检查脚本及 CPU 测试
+- `scripts/`、`tests/`：任务清单规则检查、实际文件复用检查及 CPU 测试
 - `agents/`：可选的客户端信息，其他客户端可以忽略
 
 安装方法和工具能力因客户端而异。加载技能不会自动获得 GPU、云盘或账号权限，也不会启动后台任务。
@@ -63,6 +63,8 @@ dot、bot、muse、Codex、Claude 等助手，只要能读取这些文件，并�
 [CPU 恢复示例](examples/cpu-recovery/README.md)使用一份小数据展示分片、保存进度、中断后复用结果，以及备份恢复检查，不需要云账号。另有[行为检查情景](tests/behavior/README.md)，用于检查助手在额度不足、任务状态不明和备份失败时如何处理。情景评分与真实云平台测试是两回事。
 
 [自动测试](.github/workflows/tests.yml)会运行任务清单单测和 CPU 恢复示例。[四情景对照记录](tests/behavior/evaluation-2026-10-16/README.md)保留了有 / 无 Skill 的完整回答和评分；本次两组结果相同，没有证明 Skill 更优。
+
+[本地复用检查](examples/local-reuse/README.md)会重新计算实际文件哈希，并对照旧记录检查当前输入、代码、参数和依赖。它只新建报告，不覆盖文件、不重跑任务。旧记录是否可信仍需先确认。
 
 ## 使用前需要知道
 
@@ -113,7 +115,9 @@ python -m unittest discover -s tests -v
 
 The checker uses Python's standard library. It checks only the implemented JSON rules offline. It does not query quotas, verify actual file contents, submit jobs, or grant authorization. It checks recorded output locations, hashes and verification flags for completed tasks, dependency completion, and equivalent work. An intentional rerun of completed work needs a reason. Actual file access and content checks remain separate.
 
-This repository contains instructions, templates, and that checker. It does not include automatic platform adapters for Kaggle, Colab, or cloud storage. The assistant must perform those operations with its existing tools.
+The separate [local reuse inspector](references/local-reuse.md) reads actual files and compares them with a trusted prior baseline and current plan, including transitive dependencies. It exclusively creates a new report and never changes source files or schedules work. The caller must establish baseline provenance; a digest alone cannot prove its origin.
+
+This repository contains instructions, templates, and these local checkers. It does not include automatic platform adapters for Kaggle, Colab, or cloud storage. The assistant must perform those operations with its existing tools.
 
 See the [CPU recovery demo](examples/cpu-recovery/README.md) for a local exercise and [behavior scenarios](tests/behavior/README.md) for dry-run evaluation rubrics. These are not live cloud integration tests.
 

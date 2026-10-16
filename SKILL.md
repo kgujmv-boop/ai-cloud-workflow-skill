@@ -37,6 +37,8 @@ On the first active invocation after deployment, establish the user's goal, desi
 
 Use external AI for bounded alternatives, implementation pieces, or review only when the service and shared material are authorized. The coordinating agent owns integration and correctness. Read [AI collaboration and learning](references/ai-and-learning.md) for task packets, evidence-backed notes, and feedback experiments.
 
+Before reusing any result, compare the current input, code, parameters, model revision, shard, and dependency-output identities against a trusted completion baseline. File existence or an output hash alone is insufficient. Check transitive dependencies as well: an unchanged segment can become stale when its inputs or dependencies change. Use [local reuse inspection](references/local-reuse.md) when local files are available; otherwise retain an explicit unverified state. Do not turn a reuse report into remote job ownership or permission.
+
 When feedback changes an input, create a new revision and identify affected outputs before rerunning. Reply in the user's preferred language; internal task packets may use clear English. Do not claim saved notes are weight training or permanent memory.
 
 ## Finish with evidence
