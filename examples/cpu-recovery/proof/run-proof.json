@@ -1,0 +1,475 @@
+{
+  "checks": [
+    {
+      "final_sha256": "480d53766e520a3cd3a7072228a9c21c8a91af2cd31f617b13db163da1fe78c2",
+      "records": 9,
+      "status": "PASS",
+      "test": "uninterrupted_run_and_backup_restore"
+    },
+    {
+      "attempts": {
+        "aggregate": 1,
+        "count-0": 1,
+        "count-1": 1,
+        "count-2": 1
+      },
+      "status": "PASS",
+      "test": "checkpoint_resume_skips_completed_shard",
+      "unchanged_mtime": true,
+      "unchanged_shard_hash": "ffe18ae341ec931fa296c51fc16f8154e07419d88e09f1470ccf5864bf54b47f"
+    },
+    {
+      "attempts": {
+        "aggregate": 1,
+        "count-0": 1,
+        "count-1": 2,
+        "count-2": 1
+      },
+      "status": "PASS",
+      "test": "write_ahead_running_checkpoint_reconciled"
+    },
+    {
+      "attempts": {
+        "aggregate": 1,
+        "count-0": 1,
+        "count-1": 2,
+        "count-2": 1
+      },
+      "killed_returncode": -9,
+      "status": "PASS",
+      "test": "actual_sigkill_releases_lock_and_resumes"
+    },
+    {
+      "attempts": {
+        "aggregate": 1,
+        "count-0": 1,
+        "count-1": 1,
+        "count-2": 1
+      },
+      "status": "PASS",
+      "test": "durable_receipt_adopted_without_worker_restart",
+      "unchanged_mtime": true
+    },
+    {
+      "attempts": {
+        "aggregate": 1,
+        "count-0": 1,
+        "count-1": 1,
+        "count-2": 1
+      },
+      "status": "PASS",
+      "test": "completed_workspace_repeat_is_idempotent"
+    },
+    {
+      "preserved_sha256": "987d1537dea362200b04f89dd3dee16a785c84908f94bef82520750133f29151",
+      "status": "PASS",
+      "test": "corrupt_completed_output_blocks_and_is_preserved"
+    },
+    {
+      "status": "PASS",
+      "test": "corrupt_completed_dependency_blocks_downstream_done_task"
+    },
+    {
+      "status": "PASS",
+      "test": "unreceipted_orphan_output_blocks_and_is_preserved"
+    },
+    {
+      "status": "PASS",
+      "test": "corrupt_backup_detected_and_preserved"
+    },
+    {
+      "status": "PASS",
+      "test": "corrupt_restored_copy_detected_and_preserved"
+    },
+    {
+      "status": "PASS",
+      "test": "input_identity_change_blocks_resume"
+    },
+    {
+      "status": "PASS",
+      "test": "new_refuses_existing_workspaces_without_modification"
+    },
+    {
+      "status": "PASS",
+      "test": "concurrent_workspace_owner_is_rejected"
+    },
+    {
+      "final_sha256": "480d53766e520a3cd3a7072228a9c21c8a91af2cd31f617b13db163da1fe78c2",
+      "status": "PASS",
+      "test": "restored_source_and_input_rebuild_same_final_output"
+    },
+    {
+      "status": "PASS",
+      "test": "all_manifests_pass_repository_validator",
+      "workspace_count": 12
+    }
+  ],
+  "commands": [
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "new",
+        "--workspace",
+        "uninterrupted"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"attempts\": {\"aggregate\": 1, \"count-0\": 1, \"count-1\": 1, \"count-2\": 1}, \"backup_restored_and_hash_checked\": true, \"final_sha256\": \"480d53766e520a3cd3a7072228a9c21c8a91af2cd31f617b13db163da1fe78c2\", \"status\": \"complete\"}"
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "verify",
+        "--workspace",
+        "uninterrupted"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"status\": \"verified\", \"final_sha256\": \"480d53766e520a3cd3a7072228a9c21c8a91af2cd31f617b13db163da1fe78c2\"}"
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "new",
+        "--workspace",
+        "checkpoint-interrupted",
+        "--interrupt-after",
+        "1"
+      ],
+      "returncode": 75,
+      "stderr": "",
+      "stdout": "{\"status\": \"interrupted\", \"stage\": \"after_done\", \"task_id\": \"count-0\"}"
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "resume",
+        "--workspace",
+        "checkpoint-interrupted"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"attempts\": {\"aggregate\": 1, \"count-0\": 1, \"count-1\": 1, \"count-2\": 1}, \"backup_restored_and_hash_checked\": true, \"final_sha256\": \"480d53766e520a3cd3a7072228a9c21c8a91af2cd31f617b13db163da1fe78c2\", \"status\": \"complete\"}"
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "new",
+        "--workspace",
+        "in-flight-interrupted",
+        "--interrupt-before-work",
+        "count-1"
+      ],
+      "returncode": 75,
+      "stderr": "",
+      "stdout": "{\"status\": \"interrupted\", \"stage\": \"before_work\", \"task_id\": \"count-1\"}"
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "resume",
+        "--workspace",
+        "in-flight-interrupted"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"attempts\": {\"aggregate\": 1, \"count-0\": 1, \"count-1\": 2, \"count-2\": 1}, \"backup_restored_and_hash_checked\": true, \"final_sha256\": \"480d53766e520a3cd3a7072228a9c21c8a91af2cd31f617b13db163da1fe78c2\", \"status\": \"complete\"}"
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "new",
+        "--workspace",
+        "hard-killed",
+        "--pause-before-work",
+        "count-1"
+      ],
+      "intervention": "Test sent SIGKILL after observing durable running checkpoint",
+      "returncode": -9
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "resume",
+        "--workspace",
+        "hard-killed"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"attempts\": {\"aggregate\": 1, \"count-0\": 1, \"count-1\": 2, \"count-2\": 1}, \"backup_restored_and_hash_checked\": true, \"final_sha256\": \"480d53766e520a3cd3a7072228a9c21c8a91af2cd31f617b13db163da1fe78c2\", \"status\": \"complete\"}"
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "new",
+        "--workspace",
+        "receipt-interrupted",
+        "--interrupt-after-output",
+        "count-1"
+      ],
+      "returncode": 75,
+      "stderr": "",
+      "stdout": "{\"status\": \"interrupted\", \"stage\": \"after_output_receipt\", \"task_id\": \"count-1\"}"
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "resume",
+        "--workspace",
+        "receipt-interrupted"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"attempts\": {\"aggregate\": 1, \"count-0\": 1, \"count-1\": 1, \"count-2\": 1}, \"backup_restored_and_hash_checked\": true, \"final_sha256\": \"480d53766e520a3cd3a7072228a9c21c8a91af2cd31f617b13db163da1fe78c2\", \"status\": \"complete\"}"
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "resume",
+        "--workspace",
+        "checkpoint-interrupted"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"attempts\": {\"aggregate\": 1, \"count-0\": 1, \"count-1\": 1, \"count-2\": 1}, \"backup_restored_and_hash_checked\": true, \"final_sha256\": \"480d53766e520a3cd3a7072228a9c21c8a91af2cd31f617b13db163da1fe78c2\", \"status\": \"complete\"}"
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "verify",
+        "--workspace",
+        "checkpoint-interrupted"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"status\": \"verified\", \"final_sha256\": \"480d53766e520a3cd3a7072228a9c21c8a91af2cd31f617b13db163da1fe78c2\"}"
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "new",
+        "--workspace",
+        "corrupt-completed",
+        "--interrupt-after",
+        "1"
+      ],
+      "returncode": 75,
+      "stderr": "",
+      "stdout": "{\"status\": \"interrupted\", \"stage\": \"after_done\", \"task_id\": \"count-0\"}"
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "resume",
+        "--workspace",
+        "corrupt-completed"
+      ],
+      "returncode": 3,
+      "stderr": "{\"status\": \"blocked\", \"error\": \"Missing or corrupt output; preserved without overwrite: outputs/count-0.json\"}",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "resume",
+        "--workspace",
+        "corrupt-completed"
+      ],
+      "returncode": 3,
+      "stderr": "{\"status\": \"blocked\", \"error\": \"Workspace remains blocked: Missing or corrupt output; preserved without overwrite: outputs/count-0.json\"}",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "new",
+        "--workspace",
+        "corrupt-after-all-done"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"attempts\": {\"aggregate\": 1, \"count-0\": 1, \"count-1\": 1, \"count-2\": 1}, \"backup_restored_and_hash_checked\": true, \"final_sha256\": \"480d53766e520a3cd3a7072228a9c21c8a91af2cd31f617b13db163da1fe78c2\", \"status\": \"complete\"}"
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "resume",
+        "--workspace",
+        "corrupt-after-all-done"
+      ],
+      "returncode": 3,
+      "stderr": "{\"status\": \"blocked\", \"error\": \"Missing or corrupt output; preserved without overwrite: outputs/count-0.json\"}",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "new",
+        "--workspace",
+        "orphan-output",
+        "--interrupt-before-work",
+        "count-0"
+      ],
+      "returncode": 75,
+      "stderr": "",
+      "stdout": "{\"status\": \"interrupted\", \"stage\": \"before_work\", \"task_id\": \"count-0\"}"
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "resume",
+        "--workspace",
+        "orphan-output"
+      ],
+      "returncode": 3,
+      "stderr": "{\"status\": \"blocked\", \"error\": \"Uncommitted output has no hash receipt; preserve and inspect: <test-workspace>/orphan-output/outputs/count-0.json\"}",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "new",
+        "--workspace",
+        "corrupt-backup"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"attempts\": {\"aggregate\": 1, \"count-0\": 1, \"count-1\": 1, \"count-2\": 1}, \"backup_restored_and_hash_checked\": true, \"final_sha256\": \"480d53766e520a3cd3a7072228a9c21c8a91af2cd31f617b13db163da1fe78c2\", \"status\": \"complete\"}"
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "verify",
+        "--workspace",
+        "corrupt-backup"
+      ],
+      "returncode": 3,
+      "stderr": "{\"status\": \"blocked\", \"error\": \"Missing or corrupt output; preserved without overwrite: backups/result.zip\"}",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "resume",
+        "--workspace",
+        "corrupt-backup"
+      ],
+      "returncode": 3,
+      "stderr": "{\"status\": \"blocked\", \"error\": \"Missing or corrupt output; preserved without overwrite: backups/result.zip\"}",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "new",
+        "--workspace",
+        "corrupt-restored-copy"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"attempts\": {\"aggregate\": 1, \"count-0\": 1, \"count-1\": 1, \"count-2\": 1}, \"backup_restored_and_hash_checked\": true, \"final_sha256\": \"480d53766e520a3cd3a7072228a9c21c8a91af2cd31f617b13db163da1fe78c2\", \"status\": \"complete\"}"
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "verify",
+        "--workspace",
+        "corrupt-restored-copy"
+      ],
+      "returncode": 3,
+      "stderr": "{\"status\": \"blocked\", \"error\": \"Missing or corrupt output; preserved without overwrite: restored/outputs/aggregate.json\"}",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "resume",
+        "--workspace",
+        "corrupt-restored-copy"
+      ],
+      "returncode": 3,
+      "stderr": "{\"status\": \"blocked\", \"error\": \"Missing or corrupt output; preserved without overwrite: restored/outputs/aggregate.json\"}",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "new",
+        "--workspace",
+        "changed-input",
+        "--interrupt-after",
+        "1"
+      ],
+      "returncode": 75,
+      "stderr": "",
+      "stdout": "{\"status\": \"interrupted\", \"stage\": \"after_done\", \"task_id\": \"count-0\"}"
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "resume",
+        "--workspace",
+        "changed-input"
+      ],
+      "returncode": 3,
+      "stderr": "{\"status\": \"blocked\", \"error\": \"Saved source/input copy changed; preserve it and inspect\"}",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "new",
+        "--workspace",
+        "uninterrupted"
+      ],
+      "returncode": 3,
+      "stderr": "{\"status\": \"blocked\", \"error\": \"[Errno 17] File exists: '<test-workspace>/uninterrupted'\"}",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "new",
+        "--workspace",
+        "already-existing-empty"
+      ],
+      "returncode": 3,
+      "stderr": "{\"status\": \"blocked\", \"error\": \"[Errno 17] File exists: '<test-workspace>/already-existing-empty'\"}",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "resume",
+        "--workspace",
+        "uninterrupted"
+      ],
+      "returncode": 3,
+      "stderr": "{\"status\": \"blocked\", \"error\": \"Another process holds this local workspace lock\"}",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "cpu_checkpoint_demo.py",
+        "new",
+        "--workspace",
+        "rebuild-from-restored-source"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"attempts\": {\"aggregate\": 1, \"count-0\": 1, \"count-1\": 1, \"count-2\": 1}, \"backup_restored_and_hash_checked\": true, \"final_sha256\": \"480d53766e520a3cd3a7072228a9c21c8a91af2cd31f617b13db163da1fe78c2\", \"status\": \"complete\"}"
+    }
+  ],
+  "final_sha256": "480d53766e520a3cd3a7072228a9c21c8a91af2cd31f617b13db163da1fe78c2",
+  "path_normalization": "The selected proof workspace is replaced with <test-workspace> in captured output.",
+  "platform": "linux",
+  "python": "3.12.14",
+  "run_utc": "2026-10-16T03:44:18.309606+00:00",
+  "sample_sha256": "65fb05dc34e6b3828da140cab49c14c936aef65a408e35f4230d7065a1cbc669",
+  "scope": "Small deterministic offline CPU fixture; fault-injected exits and actual SIGKILL recovery; not a benchmark or hardware failure test.",
+  "script_sha256": "056cc68757f12b8e73cdf04b4412433ea281077c9dedfd9959c418bd43415e32",
+  "status": "PASS",
+  "test_count": 16,
+  "test_script_sha256": "a6bc9e91354a982c598cd45ab26517240da26d5e30c4ebf4f9c85b4da3a2ba86",
+  "validator_sha256": "a523ece5f1fd898e15ad0904d17488157005f999e9e19131ad8640cb9b0eb118"
+}
